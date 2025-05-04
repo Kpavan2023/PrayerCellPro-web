@@ -1,9 +1,18 @@
-import * as React from "react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
+// Input component that handles both regular inputs and file inputs
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, value, ...props }, ref) => {
+    // Prevent setting value for file inputs (not allowed by browsers)
+    const inputProps =
+      type === "file"
+        ? props // skip value for file inputs
+        : {
+            ...props,
+            value: value ?? "", // Ensure controlled input never receives undefined
+          };
+
     return (
       <input
         type={type}
@@ -12,11 +21,12 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           className
         )}
         ref={ref}
-        {...props}
+        {...inputProps}
       />
-    )
+    );
   }
-)
-Input.displayName = "Input"
+);
 
-export { Input }
+Input.displayName = "Input";
+
+export { Input };

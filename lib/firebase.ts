@@ -15,7 +15,6 @@ const firebaseConfig = {
 
 // Function to check if Firebase is properly configured
 export function isFirebaseConfigured() {
-  // Check if all required Firebase config values are present and valid
   return (
     !!firebaseConfig.apiKey &&
     firebaseConfig.apiKey !== "undefined" &&
@@ -24,13 +23,13 @@ export function isFirebaseConfigured() {
   )
 }
 
-// Initialize Firebase only if it's properly configured
+// Initialize Firebase only if it's properly configured and on the client-side
 let app: FirebaseApp | undefined
 let auth: Auth
 let db: Firestore
 let storage: FirebaseStorage
 
-if (isFirebaseConfigured()) {
+if (typeof window !== "undefined" && isFirebaseConfigured()) {
   try {
     if (!getApps().length) {
       app = initializeApp(firebaseConfig)
@@ -45,7 +44,7 @@ if (isFirebaseConfigured()) {
     console.error("Firebase initialization error:", error)
   }
 } else {
-  console.warn("Firebase configuration is missing or invalid. Firebase services will not be available.")
+  console.warn("Firebase configuration is missing, invalid, or not initialized on the client side.")
 }
 
 export { auth, db, storage }
