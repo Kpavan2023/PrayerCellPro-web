@@ -65,7 +65,9 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_firebase_msg_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
 
 ADMIN_SECRET_CODE=your_admin_secret_code
+
 NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_imagekit_id
 
 > 📝 Make sure Firebase and ImageKit are properly configured in the Firebase Console and ImageKit dashboard respectively.
